@@ -25,7 +25,12 @@ namespace Library1
 
         public T DeQueue()
         {
-            if (head == null) throw new Exception("Очередь пуста.");
+            if (head == null)
+            {
+                Console.WriteLine("Стек пуст.");
+                return default(T);
+                //throw new Exception("Очередь пуста.");
+            }
             else
             {
                 Cell first = head;

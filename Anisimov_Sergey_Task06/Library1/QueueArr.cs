@@ -17,7 +17,12 @@ namespace Library1
 
         public T DeQueue()
         {
-            if (tail == head) throw new Exception("Очередь пуста.");
+            if (tail == head)
+            {
+                Console.WriteLine("Стек пуст.");
+                return default(T);
+                //throw new Exception("Очередь пуста.");
+            }
             else
             {
                 T tmp = arr[head];

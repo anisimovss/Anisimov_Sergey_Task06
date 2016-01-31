@@ -19,7 +19,12 @@ namespace Library1
 
         public T Pop()
         {
-            if (current == 0) throw new Exception("Стек пуст");
+            if (current == 0)
+            {
+                Console.WriteLine("Стек пуст.");
+                return default(T);
+                //throw new Exception("Стек пуст");
+            }
             else
             {
                 current--;

@@ -42,6 +42,7 @@ namespace Library1
                 arr[current - 1] = default(T);
                 current--;
             }
+
         }
 
         public int Find(T element)
@@ -50,13 +51,17 @@ namespace Library1
             {
                 if (((IComparable)(arr[i])).CompareTo(element) == 0) return (i);
             }
-            throw new Exception("Элемент не существует в списке.");
+            Console.WriteLine("Элемент не существует в списке.");
+            return default(int);
+            //throw new Exception("Элемент не существует в списке.");
         }
 
         public T Get(int index)
         {
             if (index < current) return (arr[index]);
-            throw new Exception("Индекс элемента превышает количество элементов.");
+            Console.WriteLine("Индекс элемента превышает количество элементов.");
+            return default(T);
+            //throw new Exception("Индекс элемента превышает количество элементов.");
         }
 
         public void Insert(T element, int index)

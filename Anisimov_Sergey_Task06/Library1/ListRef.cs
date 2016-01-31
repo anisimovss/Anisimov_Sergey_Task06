@@ -22,12 +22,21 @@ namespace Library1
         }
 
         private Cell head;
+        private Cell tail;
 
         public void Append(T element)
         {
             Cell first = new Cell(element);
-            first.Next = head;
-            head = first;
+            if (head == null)
+            {
+                head = first;
+                tail = first;
+            }
+            else
+            {
+                tail.Next = first;
+                tail = first;
+            }
         }
 
         public void Delete(int index)
@@ -38,12 +47,12 @@ namespace Library1
                 if (index == 0) head = head.Next;
                 else
                 {
-                    int i = 0;
+                    int i = 1;
                     while (first.Next != null)
                     {
                         if (index == i)
                         {
-                            first = first.Next.Next;
+                            first.Next = first.Next.Next;
                             break;
                         }
                         else
@@ -54,7 +63,7 @@ namespace Library1
                     }
                 }
             }
-            else throw new Exception("Список пуст.");
+            else Console.WriteLine("Список пуст.");
         }
 
         public int Find(T element)
@@ -67,7 +76,9 @@ namespace Library1
                 else first = first.Next;
                 i++;
             }
-            throw new Exception("Элемент не существует в списке.");
+            Console.WriteLine("Элемент не существует в списке.");
+            return default(int);
+            //throw new Exception("Элемент не существует в списке.");
         }
 
         public T Get(int index)
@@ -81,15 +92,25 @@ namespace Library1
                     i++;
                     first = first.Next;
                 }
+                if (first == null)
+                {
+                    Console.WriteLine("Элемента с таким индексом не существует.");
+                    return default(T);
+                }
                 return first.Data;
             }
-            else throw new Exception("Список пуст.");
+            else
+            {
+                Console.WriteLine("Список пуст.");
+                return default(T);
+                //throw new Exception("Список пуст.");
+            }
         }
 
         public void Insert(T element, int index)
         {
             Cell first = head;
-            for (int i = 0; i < index; i++)
+            for (int i = 0; i < index-1; i++)
             {
                 first = first.Next;
             }
@@ -98,11 +119,17 @@ namespace Library1
                 Cell second = new Cell(element);
                 second.Next = first.Next;
                 first.Next = second;
+                while (first != null)
+                {
+                    first = first.Next;
+                    tail = first;
+                } 
             }
         }
 
         public ListRef()
         {
+            tail = null;
             head = null;
         }
     }

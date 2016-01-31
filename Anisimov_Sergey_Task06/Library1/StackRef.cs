@@ -28,7 +28,12 @@ namespace Library1
 
         public T Pop()
         {
-            if (head == null) throw new Exception("Стек пуст");
+            if (head == null)
+            {
+                Console.WriteLine("Стек пуст.");
+                return default(T);
+                //throw new Exception("Стек пуст");
+            } 
             else
             {
                 Cell first = head;
